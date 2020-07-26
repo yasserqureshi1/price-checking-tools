@@ -24,5 +24,14 @@ More sites may be added in the future.
 ## How to Use:
 
 There are two ways to use the scripts:
-1. Individually
-2. Together through the main.py script
+### 1. Individually
+You can usually view the current listings and/or the sold listings. To do this you input the name of the item as a string to the class and it should return a statistical summary.
+
+### 2. Together through the main.py script
+Input the name of the item you want to search as a string.
+
+## Further Improvements
+
+- Scraping more items. Currently scrapes between 40-200 items
+- For Depop checker, remove random price listing values (users put up listings for random prices as they want to receive offers)
+- For GOAT checker, some items don't return any values
