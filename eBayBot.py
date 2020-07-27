@@ -54,10 +54,10 @@ class EbayPriceChecker:
                     self.sold_listings.append(statistics.mean([float(item) for item in price]))
                 # date = product.find('span', {'class': 's-item__ended-date s-item__endedDate'}).text
                 # self.sold_listing_dates.append(date)
-                print(product.find('h3', {'class': 's-item__title'}).text)
-                print(price)
+                # print(product.find('h3', {'class': 's-item__title'}).text)
+                # print(price)
                 # print(date)
-                print(' ')
+                # print(' ')
         except:
             print('Error occurred')
         return
