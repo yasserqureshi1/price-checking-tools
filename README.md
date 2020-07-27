@@ -1,5 +1,5 @@
 # Price-Checking-Tools
-Multiple scripts that return statistical data on different marketplaces for mainly sneakers
+Multiple scripts that return statistical data on different marketplaces for mainly sneakers. This project can be made into a Discord bot to provide price data on different site. More sites may be arranged in the future - if you would like another site added, please let me know.
 
 ## Installation
 You will require the following packages that can be installed using your package installer.
@@ -19,8 +19,6 @@ This repo contains scripts for the following sites:
 - Depop
 - BUMP
 
-More sites may be added in the future. 
-
 ## How to Use:
 
 There are two ways to use the scripts:
@@ -32,6 +30,6 @@ Input the name of the item you want to search as a string.
 
 ## Further Improvements
 
-- Scraping more items. Currently scrapes between 40-200 items
+- Scraping more items. Depop and eBay both scrape around 200 items. Bump scrapes only 40.
 - For Depop checker, remove random price listing values (users put up listings for random prices as they want to receive offers)
-- For GOAT checker, some items don't return any values
+- For GOAT checker, fails on some items
