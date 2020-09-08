@@ -1,5 +1,3 @@
-# Clean up and make into class
-
 import requests
 import json
 
