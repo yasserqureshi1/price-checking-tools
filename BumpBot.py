@@ -39,10 +39,10 @@ class BumpPriceChecker:
         print('Number of listings: ', len(data))
 
 
-if __name__ == '__main__':
-    proxies = {}
-    item = 'yeezy qntm'
-
-    test = BumpPriceChecker(item)
-    test.get_current_prices()
-    test.summary_of_prices(test.current_listings)
+# if __name__ == '__main__':
+#     proxies = {}
+#     item = 'yeezy qntm'
+#
+#     test = BumpPriceChecker(item)
+#     test.get_current_prices()
+#     test.summary_of_prices(test.current_listings)

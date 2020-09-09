@@ -30,9 +30,9 @@ class EbayPriceChecker:
                     price = price.split()
                     prices = [float(item) for item in price]
                     self.current_listings.append(statistics.mean(prices))
-                print(product.find('h3', {'class': 's-item__title'}).text)
-                print(price)
-                print(' ')
+                #print(product.find('h3', {'class': 's-item__title'}).text)
+                #print(price)
+                #print(' ')
         except:
             print('Error occurred')
         return
@@ -70,13 +70,13 @@ class EbayPriceChecker:
         print('Number of listings: ', len(data))
 
 
-if __name__ == '__main__':
-    test = EbayPriceChecker('yeezy zyon')
-
-    # Current Listings
-    test.get_current_prices()
-    test.summary_of_prices(test.current_listings)
-
-    # Sold Listings
-    test.get_sold_prices()
-    test.summary_of_prices(test.sold_listings)
+# if __name__ == '__main__':
+#     test = EbayPriceChecker('yeezy zyon')
+#
+#     # Current Listings
+#     test.get_current_prices()
+#     test.summary_of_prices(test.current_listings)
+#
+#     # Sold Listings
+#     test.get_sold_prices()
+#     test.summary_of_prices(test.sold_listings)

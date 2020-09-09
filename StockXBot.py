@@ -42,7 +42,7 @@ class StockXPriceChecker:
         print('Sales in the last 72hrs: ', sales_last_72)
 
 
-if __name__ == '__main__':
-    test = StockXPriceChecker('jordan 1 high court purple')
-    test.scrape_site()
-    test.current_listing_stats()
+# if __name__ == '__main__':
+#     test = StockXPriceChecker('jordan 1 high court purple')
+#     test.scrape_site()
+#     test.current_listing_stats()

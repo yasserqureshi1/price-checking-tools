@@ -41,7 +41,7 @@ class GOATPriceChecker:
         print('Three day rolling count: ', want_count_three)
 
 
-if __name__ == '__main__':
-    test = GOATPriceChecker("yeezy qntm")
-    test.scrape_site()
-    test.current_listing_stats()
+# if __name__ == '__main__':
+#     test = GOATPriceChecker("yeezy qntm")
+#     test.scrape_site()
+#     test.current_listing_stats()

@@ -62,7 +62,7 @@ class DepopPriceChecker:
         print('Number of listings: ', self.no_list)
 
 
-if __name__ == '__main__':
-    test = DepopPriceChecker('yeezy 350', proxies={})
-    test.print_data()
+# if __name__ == '__main__':
+#     test = DepopPriceChecker('yeezy 350', proxies={})
+#     test.print_data()
 
