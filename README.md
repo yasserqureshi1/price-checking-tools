@@ -1,16 +1,23 @@
 # Price-Checking-Tools
-Multiple scripts that return statistical data on different marketplaces for mainly sneakers. This project can be made into a Discord bot to provide price data on different site. More sites may be arranged in the future - if you would like another site added, please let me know.
+Multiple scripts that return statistical data on different marketplaces for mainly sneakers. 
 
 ## Installation
-You will require the following packages that can be installed using your package installer.
+Install the required dependencies using the following command in Command Prompt (Windows) or Terminal (Mac or Linux):
+```
+pip install -r requirements.txt
+```
+
+The following packages will be installed:
 ```
 requests
 json
 bs4
+numpy
 ```
 
 ## Introduction
-The purpose of this repo is to return statistical data on the prices for a particular item on different marketplaces. This can be used to determine which site(s) may be the best platform to sell on and also gives a good estimate on how well the item is selling.
+The purpose of this repo is to return statistical data on the prices for a particular item on different marketplaces. 
+This can be used to determine the best site(s) to sell or purchase items.
 
 This repo contains scripts for the following sites:
 - StockX
@@ -19,17 +26,24 @@ This repo contains scripts for the following sites:
 - Depop
 - BUMP
 
-## How to Use:
+## How to use
 
-There are two ways to use the scripts:
-### 1. Individually
-You can usually view the current listings and/or the sold listings. To do this you input the name of the item as a string to the class and it should return a statistical summary.
+These scripts can be run via the command line.
+The general structure is as follows
 
-### 2. Together through the main.py script
-Input the name of the item you want to search as a string.
+```
+python [script name] [argument 1] [argument 2]
+```
 
-## Further Improvements
+With most of the tools, you will only need to pass 1 argument, with the exception of `eBayBot.py` which takes 2.
+An example of how to pass arguments is shown below:
+```
+python StockXBot.py 'yeezy 350 creams'
+```
 
-- Scraping more items. Depop and eBay both scrape around 200 items. Bump scrapes only 40.
-- For Depop checker, remove random price listing values (users put up listings for random prices as they want to receive offers)
-- For GOAT checker, fails on some items
+For `ebayBot.py`, the first argument is whether you want sold prices or current prices with the second argument being the item.
+As such the first argument should be passed either as `current` or `sold`.
+An example is shown below:
+```
+python eBayBot.py current 'yeezy 350 creams'
+```
