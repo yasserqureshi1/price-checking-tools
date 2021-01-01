@@ -1,68 +1,43 @@
-# Current Issue: removing useless data - i.e. people listing items for random prices (£1, £12345, £9999 etc.)
-
 import requests as rq
 import json
 import statistics
+import numpy as np
+import sys
 
 
-class DepopPriceChecker:
-    def __init__(self, item, proxies=None):
-        self.item = item
-        if proxies == None:
-            self.proxies = {}
-        else:
-            self.proxies = proxies
-        self.current_listings = []
-        self.max = 0
-        self.min = 0
-        self.avg = 0
-        self.std = 0
-        self.no_list = 0
-
-    def scrape_site(self):
-        try:
-            html = rq.get('https://webapi.depop.com/api/v1/search/?what=' + self.item.replace(' ', '%20') + '&country=gb&limit=200', proxies=self.proxies).text
-            output = json.loads(html)
-
-            for i in output['products']:
-                price = i['price']['price_amount']
-                self.current_listings.append(float(price))
-
-        except:
-            print('error')
-
-        return
-
-    def checker(self, price, std, avg):
-        if price > 2*std + avg:
-            return 0
-        elif price < avg - 2*std:
-            return 0
-        else:
-            return 1
-
-    def summary_of_prices(self, data):
-        self.max = max(data)
-        self.min = min(data)
-        self.avg = sum(data)/len(data)
-        self.std = statistics.stdev(data)
-        self.no_list = len(data)
-
-    def print_data(self):
-        self.scrape_site()
-        self.summary_of_prices(self.current_listings)
-        for item in self.current_listings:
-            if self.checker(item, self.std, self.avg) == 0:
-                self.current_listings.remove(item)
-
-        print('Max: ', self.max)
-        print('Min: ', self.min)
-        print('Average: ', self.avg)
-        print('Standard Deviation: ', self.std)
-        print('Number of listings: ', self.no_list)
+def scrape_site(item):
+    current_listings = []
+    try:
+        url = f'https://webapi.depop.com/api/v1/search/?what={item.replace(" ", "%20")}&country=gb&limit=200'
+        html = rq.get(url=url)
+        output = json.loads(html.text)
+        for i in output['products']:
+            price = i['price']['price_amount']
+            current_listings.append(float(price))
+        return current_listings
+    except Exception as e:
+        print(e)
+        return 'Exception'
 
 
-# if __name__ == '__main__':
-#     test = DepopPriceChecker('yeezy 350', proxies={})
-#     test.print_data()
+def clean_data(data):
+    _25th = np.percentile(np.array(data), 20)
+    _75th = np.percentile(np.array(data), 80)
+    data = [x for x in data if _75th > x > _25th]
+    return data
 
+
+def summary_of_prices(data):
+    print('Max: ', max(data))
+    print('Min: ', min(data))
+    print('Average: ', sum(data) / len(data))
+    print('Standard Deviation: ', statistics.stdev(data))
+    print('Number of listings: ', len(data))
+
+
+if __name__ == '__main__':
+    output = scrape_site(sys.argv[1])
+    if output != 'Exception' and output != []:
+        summary_of_prices(clean_data(output))
+    else:
+        print('Please check first argument variable')
