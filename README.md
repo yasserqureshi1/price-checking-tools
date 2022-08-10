@@ -24,15 +24,20 @@ This repo contains scripts for the following sites:
 - GOAT
 - eBay
 - Depop
-- BUMP
 
 ## How to use
 
 These scripts can be run via the command line.
 The general structure is as follows
 
+#### Windows
 ```
 python [script name] [argument 1] [argument 2]
+```
+
+#### Linux/Mac
+```
+python3 [script name] [argument 1] [argument 2]
 ```
 
 With most of the tools, you will only need to pass 1 argument, with the exception of `eBayBot.py` which takes 2.
@@ -47,3 +52,4 @@ An example is shown below:
 ```
 python eBayBot.py current 'yeezy 350 creams'
 ```
+including the single quotations around the item is important to the accuracy of your results.

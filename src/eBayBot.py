@@ -15,7 +15,8 @@ def get_current_prices(item):
             try:
                 current_listings.append(float(price.replace('£', '')))
             except:
-                price = price.replace(' to', '').replace('£', '')
+                #replaces dollar sign and pound sign
+                price = price.replace(' to', '').replace('£', '').replace(',', '').replace('$', '')
                 price = price.split()
                 prices = [float(item) for item in price]
                 current_listings.append(statistics.mean(prices))
@@ -29,7 +30,9 @@ def get_sold_prices(item):
     sold_listings = []
 
     try:
-        url = f'https://www.ebay.co.uk/sch/i.html?_nkw={item.replace(" ", "+")}&_ipg=200&rt=nc&LH_Sold=1'
+        #to use USA ebay replace .co.uk with .com
+        base_url = 'https://www.ebay.co.uk'
+        url = f'{base_url}/sch/i.html?_nkw={item.replace(" ", "+")}&_ipg=200&rt=nc&LH_Sold=1'
         html = rq.get(url=url)
         soup = BeautifulSoup(html.text, 'html.parser')
 
@@ -38,7 +41,7 @@ def get_sold_prices(item):
             try:
                 sold_listings.append(float(price.replace('£', '')))
             except:
-                price = price.replace(' to', '').replace('£', '')
+                price = price.replace(' to', '').replace('£', '').replace(',', '').replace('$', '')
                 price = price.split()
                 sold_listings.append(statistics.mean([float(item) for item in price]))
         return sold_listings
@@ -50,8 +53,8 @@ def get_sold_prices(item):
 def summary_of_prices(data):
     print('Max: ', max(data))
     print('Min: ', min(data))
-    print('Average: ', sum(data) / len(data))
-    print('Standard Deviation: ', statistics.stdev(data))
+    print('Average: ', (sum(data) / len(data)).__round__(2))
+    print('Standard Deviation: ', statistics.stdev(data).__round__(2))
     print('Number of listings: ', len(data))
 
 
@@ -67,4 +70,4 @@ if __name__ == '__main__':
     if output != 'Exception' and output != []:
         summary_of_prices(output)
     else:
-        print('Please check second argument variable')
+        print('Please check second argument variable') 
