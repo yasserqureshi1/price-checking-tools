@@ -8,11 +8,13 @@ import sys
 def scrape_site(item):
     current_listings = []
     try:
-        url = f'https://webapi.depop.com/api/v1/search/?what={item.replace(" ", "%20")}&country=gb&limit=200'
+        #change country_code to your countries two letter code (eg. gb for great britain)
+        country_code = 'gb'
+        url = f'https://webapi.depop.com/api/v2/search/products/?what={item.replace(" ", "+")}&itemsPerPage=40&country={country_code}&sort=relevance'
         html = rq.get(url=url)
         output = json.loads(html.text)
         for i in output['products']:
-            price = i['price']['price_amount']
+            price = i['price']['priceAmount']
             current_listings.append(float(price))
         return current_listings
     except Exception as e:
@@ -28,11 +30,14 @@ def clean_data(data):
 
 
 def summary_of_prices(data):
-    print('Max: ', max(data))
-    print('Min: ', min(data))
-    print('Average: ', sum(data) / len(data))
-    print('Standard Deviation: ', statistics.stdev(data))
-    print('Number of listings: ', len(data))
+    try:
+        print('Max: ', max(data))
+        print('Min: ', min(data))
+        print('Average: ', (sum(data) / len(data)).__round__(2))
+        print('Standard Deviation: ', statistics.stdev(data).__round__(2))
+        print('Number of listings: ', len(data))
+    except ValueError:
+        print('Not enough listings to calculate statistics')
 
 
 if __name__ == '__main__':
